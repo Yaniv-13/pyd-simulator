@@ -28,14 +28,21 @@
       font-family: 'Outfit', sans-serif;
       background: var(--bg);
       color: var(--text);
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      overflow: hidden;
+      overflow-y: auto;
       gap: 8px;
+    }
+
+    @media (max-height: 900px) {
+      body {
+        padding: 40px 20px;
+        justify-content: flex-start;
+      }
     }
 
     /* hero */
