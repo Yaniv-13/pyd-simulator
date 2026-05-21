@@ -181,9 +181,14 @@
       border-color: var(--purple);
     }
     .input-hint {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--muted);
-      margin-top: 4px;
+      margin-top: 2px;
+      height: 0;
+      overflow: hidden;
+    }
+    .input-hint:not(:empty) {
+      height: auto;
     }
 
     /* results */
