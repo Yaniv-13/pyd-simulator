@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Become a Py'd Member</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* tokens */
+    :root {
+      --bg: rgb(15, 15, 41);
+      --card-bg: rgba(36, 36, 45, 0.9);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.4);
+      --blue: rgb(50, 197, 255);
+      --purple: rgb(142, 58, 191);
+      --gold: rgb(247, 181, 0);
+      --gradient: linear-gradient(225deg, rgb(247,181,0), rgb(142,58,191), rgb(50,197,255));
+      --radius-card: 16px;
+      --radius-pill: 48px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 16px 80px;
+    }
+
+    /* hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* cards */
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: var(--radius-card);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 32px;
+      width: 100%;
+      max-width: 560px;
+      margin-bottom: 24px;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 28px;
+      color: var(--text);
+    }
+
+    /* input groups */
+    .input-group {
+      margin-bottom: 28px;
+    }
+    .input-group:last-child { margin-bottom: 0; }
+
+    .input-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.12);
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gradient);
+      cursor: pointer;
+      border: none;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--purple);
+      cursor: pointer;
+      border: none;
+    }
+
+    .number-input {
+      width: 72px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 8px 10px;
+      text-align: center;
+      outline: none;
+    }
+    .number-input:focus {
+      border-color: var(--purple);
+    }
+
+    .dollar-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .dollar-sign {
+      position: absolute;
+      left: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--muted);
+      pointer-events: none;
+    }
+    .dollar-input {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-pill);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 14px 16px 14px 32px;
+      outline: none;
+    }
+    .dollar-input:focus {
+      border-color: var(--purple);
+    }
+    .input-hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+      min-height: 16px;
+    }
+
+    /* results */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .results-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 15px;
+    }
+    .results-row.no-border { border-bottom: none; }
+    .results-label { color: var(--muted); font-weight: 400; }
+    .results-value { font-weight: 600; color: var(--text); }
+
+    .results-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: 16px 0;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 8px;
+    }
+    .total-label {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .total-value {
+      font-size: 28px;
+      font-weight: 900;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <h1>Become a Py'd Member</h1>
+    <p>See how much you can earn each month by referring experts to the Py'd platform.</p>
+  </div>
+
+  <!-- Input card -->
+  <div class="card">
+    <h2>Your Network</h2>
+
+    <div class="input-group">
+      <label class="input-label" for="l1-slider">How many experts will you refer directly?</label>
+      <div class="slider-row">
+        <input type="range" id="l1-slider" min="0" max="100" value="5" />
+        <label class="sr-only" for="l1-number">How many experts will you refer directly? (number)</label>
+        <input type="number" id="l1-number" class="number-input" min="0" max="100" value="5" />
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label class="input-label" for="l2-slider">How many experts will each of your referrals bring?</label>
+      <div class="slider-row">
+        <input type="range" id="l2-slider" min="0" max="20" value="3" />
+        <label class="sr-only" for="l2-number">How many experts will each of your referrals bring? (number)</label>
+        <input type="number" id="l2-number" class="number-input" min="0" max="20" value="3" />
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label class="input-label" for="avg-revenue">Average monthly earnings per expert in your network</label>
+      <div class="dollar-input-wrap">
+        <span class="dollar-sign">$</span>
+        <input type="number" id="avg-revenue" class="dollar-input" min="8" value="1000" placeholder="1,000" />
+      </div>
+      <div class="input-hint" id="revenue-hint"></div>
+    </div>
+  </div>
+
+  <!-- Results card -->
+  <div class="card">
+    <h2>Your Monthly Earnings</h2>
+
+    <div class="section-title">Network Size</div>
+    <div class="results-row">
+      <span class="results-label">Your L1 network</span>
+      <span class="results-value"><span id="out-l1-count">5</span> experts</span>
+    </div>
+    <div class="results-row">
+      <span class="results-label">Your L2 network</span>
+      <span class="results-value"><span id="out-l2-count">15</span> experts</span>
+    </div>
+    <div class="results-row">
+      <span class="results-label">Total network</span>
+      <span class="results-value"><span id="out-total-count">20</span> experts</span>
+    </div>
+
+    <div class="results-divider"></div>
+
+    <div class="section-title">Commissions</div>
+    <div class="results-row">
+      <span class="results-label">L1 monthly commission <span style="font-size:11px;opacity:0.5">(1%)</span></span>
+      <span class="results-value" id="out-l1-earn">$50.00</span>
+    </div>
+    <div class="results-row no-border">
+      <span class="results-label">L2 monthly commission <span style="font-size:11px;opacity:0.5">(0.5%)</span></span>
+      <span class="results-value" id="out-l2-earn">$75.00</span>
+    </div>
+
+    <div class="results-divider"></div>
+
+    <div class="total-row">
+      <span class="total-label">Your total monthly earnings</span>
+      <span class="total-value" id="out-total">$125.00</span>
+    </div>
+  </div>
+
+  <script>
+    const L1_RATE = 0.01;
+    const L2_RATE = 0.005;
+    const MIN_REVENUE = 8;
+
+    const l1Slider = document.getElementById('l1-slider');
+    const l1Number = document.getElementById('l1-number');
+    const l2Slider = document.getElementById('l2-slider');
+    const l2Number = document.getElementById('l2-number');
+    const avgRevenue = document.getElementById('avg-revenue');
+    const revenueHint = document.getElementById('revenue-hint');
+
+    const outL1Count = document.getElementById('out-l1-count');
+    const outL2Count = document.getElementById('out-l2-count');
+    const outTotalCount = document.getElementById('out-total-count');
+    const outL1Earn = document.getElementById('out-l1-earn');
+    const outL2Earn = document.getElementById('out-l2-earn');
+    const outTotal = document.getElementById('out-total');
+
+    function fmt(n) {
+      return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function clampRevenue(raw) {
+      const n = parseFloat(raw);
+      if (isNaN(n) || n < MIN_REVENUE) return MIN_REVENUE;
+      return n;
+    }
+
+    function recalc() {
+      const l1 = parseInt(l1Number.value) || 0;
+      const l2PerL1 = parseInt(l2Number.value) || 0;
+      const rev = clampRevenue(avgRevenue.value);
+
+      const rawRev = parseFloat(avgRevenue.value);
+      revenueHint.textContent = (isNaN(rawRev) || rawRev < MIN_REVENUE)
+        ? 'Minimum transaction is $8'
+        : '';
+
+      const l2Count = l1 * l2PerL1;
+      const totalCount = l1 + l2Count;
+      const l1Earn = l1 * rev * L1_RATE;
+      const l2Earn = l2Count * rev * L2_RATE;
+      const total = l1Earn + l2Earn;
+
+      outL1Count.textContent = l1;
+      outL2Count.textContent = l2Count;
+      outTotalCount.textContent = totalCount;
+      outL1Earn.textContent = fmt(l1Earn);
+      outL2Earn.textContent = fmt(l2Earn);
+      outTotal.textContent = fmt(total);
+    }
+
+    // Sync slider ↔ number input
+    l1Slider.addEventListener('input', () => { l1Number.value = l1Slider.value; recalc(); });
+    l1Number.addEventListener('input', () => {
+      const v = Math.min(100, Math.max(0, parseInt(l1Number.value) || 0));
+      l1Number.value = v;
+      l1Slider.value = v;
+      recalc();
+    });
+
+    l2Slider.addEventListener('input', () => { l2Number.value = l2Slider.value; recalc(); });
+    l2Number.addEventListener('input', () => {
+      const v = Math.min(20, Math.max(0, parseInt(l2Number.value) || 0));
+      l2Number.value = v;
+      l2Slider.value = v;
+      recalc();
+    });
+
+    avgRevenue.addEventListener('input', recalc);
+
+    // Initial render
+    recalc();
+  </script>
+</body>
+</html>
