@@ -28,34 +28,37 @@
       font-family: 'Outfit', sans-serif;
       background: var(--bg);
       color: var(--text);
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 48px 16px 80px;
+      justify-content: center;
+      padding: 16px;
+      overflow: hidden;
     }
 
     /* hero */
     .hero {
       text-align: center;
-      margin-bottom: 48px;
+      margin-bottom: 12px;
     }
     .hero h1 {
-      font-size: clamp(36px, 6vw, 72px);
+      font-size: clamp(28px, 5vw, 48px);
       font-weight: 900;
       background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       line-height: 1.1;
-      margin-bottom: 16px;
+      margin-bottom: 6px;
     }
     .hero p {
-      font-size: 18px;
+      font-size: 13px;
       font-weight: 400;
       color: var(--muted);
       max-width: 480px;
       margin: 0 auto;
+      line-height: 1.3;
     }
 
     /* cards */
@@ -65,31 +68,33 @@
       -webkit-backdrop-filter: blur(14px);
       border-radius: var(--radius-card);
       border: 1px solid rgba(255,255,255,0.08);
-      padding: 32px;
+      padding: 16px 20px;
       width: 100%;
-      max-width: 560px;
-      margin-bottom: 24px;
+      max-width: 500px;
+      margin-bottom: 12px;
     }
 
     .card h2 {
-      font-size: 18px;
+      font-size: 13px;
       font-weight: 700;
-      margin-bottom: 28px;
+      margin-bottom: 12px;
       color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
     /* input groups */
     .input-group {
-      margin-bottom: 28px;
+      margin-bottom: 12px;
     }
     .input-group:last-child { margin-bottom: 0; }
 
     .input-label {
       display: block;
-      font-size: 14px;
+      font-size: 11px;
       font-weight: 600;
       color: var(--muted);
-      margin-bottom: 10px;
+      margin-bottom: 6px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
@@ -198,48 +203,50 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 0;
+      padding: 6px 0;
       border-bottom: 1px solid rgba(255,255,255,0.06);
-      font-size: 15px;
+      font-size: 12px;
     }
     .results-row.no-border { border-bottom: none; }
-    .results-label { color: var(--muted); font-weight: 400; }
+    .results-label { color: var(--muted); font-weight: 400; font-size: 11px; }
     .results-value { font-weight: 600; color: var(--text); }
 
     .results-divider {
       height: 1px;
       background: rgba(255,255,255,0.1);
-      margin: 16px 0;
+      margin: 8px 0;
     }
 
     .total-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 8px;
+      padding-top: 4px;
+      gap: 12px;
     }
     .total-label {
-      font-size: 16px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--text);
     }
     .total-value {
-      font-size: 28px;
+      font-size: 22px;
       font-weight: 900;
       background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      white-space: nowrap;
     }
 
     .section-title {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 4px;
-      margin-top: 4px;
+      margin-bottom: 3px;
+      margin-top: 2px;
     }
   </style>
 </head>
